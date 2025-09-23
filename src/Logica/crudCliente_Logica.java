@@ -18,7 +18,8 @@ public class crudCliente_Logica {
             primero = nuevo;
 
         }
-        JOptionPane.showMessageDialog(null, "cliente: " + primero.getPersona().getNombre() + " ingresado con exito");
+        JOptionPane.showMessageDialog(null, "cliente: " + primero.getPersona().getNombre() + " ingresado con exito"
+                + "  a las: " + primero.getPersona().getHoraIngreso());
 
     }
 
