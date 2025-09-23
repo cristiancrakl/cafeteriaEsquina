@@ -1,6 +1,9 @@
 package Interfaz;
 
+import java.time.LocalDateTime;
+
 import Logica.*;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -92,16 +95,20 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ingresarClienteBTNActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ingresarClienteBTNActionPerformed
-        registrarCliente_Interfaz inicioMenu = new registrarCliente_Interfaz();
+    crudCliente_Logica crud = new crudCliente_Logica();
 
-        inicioMenu.setVisible(true);
-        dispose();
+    private void ingresarClienteBTNActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ingresarClienteBTNActionPerformed
+
+        Persona cliente = new Persona(
+                Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el numero de documento")),
+                Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el dia de reserva")), LocalDateTime.now(),
+                Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el numero de mesa")),
+                JOptionPane.showInputDialog(null, "nombre de cliente"));
+        crud.ingresarCliente(cliente);
     }// GEN-LAST:event_ingresarClienteBTNActionPerformed
 
     private void consultarClientesBTNActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_consultarClientesBTNActionPerformed
 
-        crudCliente_Logica crud = new crudCliente_Logica();
         crud.consultar();
 
     }// GEN-LAST:event_consultarClientesBTNActionPerformed

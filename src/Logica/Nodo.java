@@ -21,8 +21,7 @@ public class Nodo {
         this.persona = persona;
     }
 
-    public Nodo(Nodo direccion, Persona persona) {
-        this.direccion = direccion;
+    public Nodo(Persona persona) {
         this.persona = persona;
     }
 

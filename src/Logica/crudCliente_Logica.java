@@ -5,40 +5,36 @@ import javax.swing.JOptionPane;
 public class crudCliente_Logica {
 
     Nodo primero;
-    Persona cliente;
-
-    public crudCliente_Logica(){
-        primero=null;
-    }
 
     public void ingresarCliente(Persona cliente) {
 
         System.out.println("entro aqui");
 
-        Nodo nuevo = new Nodo(null, cliente);
+        Nodo nuevo = new Nodo(cliente);
         if (primero == null) {
             primero = nuevo;
-            JOptionPane.showMessageDialog(null, "cliente: " + cliente.getNombre() + " ingresado con exito");
         } else {
             nuevo.setDireccion(primero);
             primero = nuevo;
-            JOptionPane.showMessageDialog(null, "cliente: " + cliente.getNombre() + " ingresado con exito");
+
         }
+        JOptionPane.showMessageDialog(null, "cliente: " + primero.getPersona().getNombre() + " ingresado con exito");
 
     }
 
     public void consultar() {
 
+        System.out.println("entro aqui");
         Nodo temporal = primero;
         if (temporal == null) {
             JOptionPane.showMessageDialog(null, "Lista vacia");
+            System.out.println("si");
         } else {
             while (temporal != null) {
-                JOptionPane.showMessageDialog(null,
-                        "Nombre : " + temporal.getPersona().getNombre() + " Edad : "
-                                + temporal.getPersona().getNombre());
+                JOptionPane.showMessageDialog(null, "Nombre : " + temporal.getPersona().getNombre());
 
                 temporal = temporal.getDireccion();
+                System.out.println("no");
             }
         }
     }
