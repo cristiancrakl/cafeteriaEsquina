@@ -30,10 +30,18 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-              <Component id="ingresarClienteBTN" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="ingresarClienteBTN" min="-2" max="-2" attributes="0"/>
+                  <Component id="totalClientesSemana" max="32767" attributes="0"/>
+                  <Component id="clientesMesas" alignment="0" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="consultarClientesBTN" min="-2" pref="133" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="totalClientesDia" min="-2" max="-2" attributes="0"/>
+                  <Component id="consultarClientesBTN" min="-2" pref="165" max="-2" attributes="0"/>
+                  <Component id="diaMaximoClientes" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -47,7 +55,17 @@
                   <Component id="consultarClientesBTN" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="ingresarClienteBTN" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="192" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="totalClientesSemana" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="totalClientesDia" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="clientesMesas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="diaMaximoClientes" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="79" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -72,6 +90,38 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ingresarClienteBTNActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="totalClientesSemana">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Total Clientes Semana"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="totalClientesSemanaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="totalClientesDia">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Total Clientes D&#xed;a"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="totalClientesDiaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="clientesMesas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Total Clientes mesa"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clientesMesasActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="diaMaximoClientes">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="D&#xed;a con m&#xe1;s Clientes"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="diaMaximoClientesActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

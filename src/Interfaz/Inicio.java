@@ -38,12 +38,16 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
         consultarClientesBTN = new javax.swing.JButton();
         ingresarClienteBTN = new javax.swing.JButton();
+        totalClientesSemana = new javax.swing.JButton();
+        totalClientesDia = new javax.swing.JButton();
+        clientesMesas = new javax.swing.JButton();
+        diaMaximoClientes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,37 +67,93 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        totalClientesSemana.setText("Total Clientes Semana");
+        totalClientesSemana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalClientesSemanaActionPerformed(evt);
+            }
+        });
+
+        totalClientesDia.setText("Total Clientes Día");
+        totalClientesDia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalClientesDiaActionPerformed(evt);
+            }
+        });
+
+        clientesMesas.setText("Total Clientes mesa");
+        clientesMesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clientesMesasActionPerformed(evt);
+            }
+        });
+
+        diaMaximoClientes.setText("Día con más Clientes");
+        diaMaximoClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diaMaximoClientesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(154, 154, 154)
-                                .addComponent(jLabel1)
-                                .addContainerGap(165, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(ingresarClienteBTN)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(consultarClientesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 133,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addComponent(jLabel1)
+                .addContainerGap(165, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ingresarClienteBTN)
+                    .addComponent(totalClientesSemana, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(clientesMesas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(totalClientesDia)
+                    .addComponent(consultarClientesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(diaMaximoClientes))
+                .addContainerGap())
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)
-                                .addGap(54, 54, 54)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(consultarClientesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(ingresarClienteBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(192, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(consultarClientesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ingresarClienteBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalClientesSemana)
+                    .addComponent(totalClientesDia))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clientesMesas)
+                    .addComponent(diaMaximoClientes))
+                .addContainerGap(79, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void totalClientesSemanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalClientesSemanaActionPerformed
+        crud.totalClientesSemanales();
+    }//GEN-LAST:event_totalClientesSemanaActionPerformed
+
+    private void totalClientesDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalClientesDiaActionPerformed
+       crud.totalClientesPorDiaSemana();
+    }//GEN-LAST:event_totalClientesDiaActionPerformed
+
+    private void clientesMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesMesasActionPerformed
+       crud.totalClientesPorMesa();
+    }//GEN-LAST:event_clientesMesasActionPerformed
+
+    private void diaMaximoClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaMaximoClientesActionPerformed
+        crud.diaConMasClientes();
+    }//GEN-LAST:event_diaMaximoClientesActionPerformed
 
     crudCliente_Logica crud = new crudCliente_Logica();
 
@@ -143,8 +203,12 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clientesMesas;
     private javax.swing.JButton consultarClientesBTN;
+    private javax.swing.JButton diaMaximoClientes;
     private javax.swing.JButton ingresarClienteBTN;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton totalClientesDia;
+    private javax.swing.JButton totalClientesSemana;
     // End of variables declaration//GEN-END:variables
 }
