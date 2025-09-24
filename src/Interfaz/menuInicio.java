@@ -14,15 +14,18 @@ import javax.swing.JOptionPane;
  *
  * @author crist
  */
-public class Inicio extends javax.swing.JFrame {
+public class menuInicio extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Inicio.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger
+            .getLogger(menuInicio.class.getName());
+    private static crudCliente_Logica crud;
 
     /**
      * Creates new form Inicio
      */
-    public Inicio() {
+    public menuInicio(crudCliente_Logica crud) {
         initComponents();
+        this.crud = crud;
     }
 
     /**
@@ -38,7 +41,9 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -48,10 +53,11 @@ public class Inicio extends javax.swing.JFrame {
         totalClientesDia = new javax.swing.JButton();
         clientesMesas = new javax.swing.JButton();
         diaMaximoClientes = new javax.swing.JButton();
+        buscarCedulaBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Cafe la Esquina");
+        jLabel1.setText("Menu Cafe la Esquina");
 
         consultarClientesBTN.setText("Consultar Clientes");
         consultarClientesBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -60,7 +66,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        ingresarClienteBTN.setText("Ingresar Clientes");
+        ingresarClienteBTN.setText("Ingresar Cliente");
         ingresarClienteBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresarClienteBTNActionPerformed(evt);
@@ -95,75 +101,113 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        buscarCedulaBTN.setText("Buscar por numero de cedula");
+        buscarCedulaBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarCedulaBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(jLabel1)
-                .addContainerGap(165, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ingresarClienteBTN)
-                    .addComponent(totalClientesSemana, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(clientesMesas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(totalClientesDia)
-                    .addComponent(consultarClientesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(diaMaximoClientes))
-                .addContainerGap())
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(37, 37, 37)
+                                                .addGroup(layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
+                                                                false)
+                                                        .addComponent(totalClientesSemana,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(clientesMesas,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(ingresarClienteBTN,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44,
+                                                        Short.MAX_VALUE)
+                                                .addGroup(layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
+                                                                false)
+                                                        .addComponent(consultarClientesBTN,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, 165,
+                                                                Short.MAX_VALUE)
+                                                        .addComponent(totalClientesDia,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(diaMaximoClientes,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(154, 154, 154)
+                                                .addComponent(jLabel1)
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(106, 106, 106)
+                                .addComponent(buscarCedulaBTN)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(consultarClientesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ingresarClienteBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalClientesSemana)
-                    .addComponent(totalClientesDia))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clientesMesas)
-                    .addComponent(diaMaximoClientes))
-                .addContainerGap(79, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1)
+                                .addGap(54, 54, 54)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(consultarClientesBTN)
+                                        .addComponent(ingresarClienteBTN))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(totalClientesSemana)
+                                        .addComponent(totalClientesDia))
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(clientesMesas)
+                                        .addComponent(diaMaximoClientes))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38,
+                                        Short.MAX_VALUE)
+                                .addComponent(buscarCedulaBTN)
+                                .addGap(27, 27, 27)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void totalClientesSemanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalClientesSemanaActionPerformed
+    private void totalClientesSemanaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_totalClientesSemanaActionPerformed
         crud.totalClientesSemanales();
-    }//GEN-LAST:event_totalClientesSemanaActionPerformed
+    }// GEN-LAST:event_totalClientesSemanaActionPerformed
 
-    private void totalClientesDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalClientesDiaActionPerformed
-       crud.totalClientesPorDiaSemana();
-    }//GEN-LAST:event_totalClientesDiaActionPerformed
+    private void totalClientesDiaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_totalClientesDiaActionPerformed
+        crud.totalClientesPorDiaSemana();
+    }// GEN-LAST:event_totalClientesDiaActionPerformed
 
-    private void clientesMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesMesasActionPerformed
-       crud.totalClientesPorMesa();
-    }//GEN-LAST:event_clientesMesasActionPerformed
+    private void clientesMesasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_clientesMesasActionPerformed
+        crud.totalClientesPorMesa();
+    }// GEN-LAST:event_clientesMesasActionPerformed
 
-    private void diaMaximoClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaMaximoClientesActionPerformed
+    private void diaMaximoClientesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_diaMaximoClientesActionPerformed
         crud.diaConMasClientes();
-    }//GEN-LAST:event_diaMaximoClientesActionPerformed
+    }// GEN-LAST:event_diaMaximoClientesActionPerformed
 
-    crudCliente_Logica crud = new crudCliente_Logica();
+    private void buscarCedulaBTNActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buscarCedulaBTNActionPerformed
+
+        crud.consultarID();
+
+    }// GEN-LAST:event_buscarCedulaBTNActionPerformed
 
     private void ingresarClienteBTNActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ingresarClienteBTNActionPerformed
 
-        Persona cliente = new Persona(
-                Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el numero de documento")),
-                Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el dia de reserva")), LocalDateTime.now(),
-                Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el numero de mesa")),
-                JOptionPane.showInputDialog(null, "nombre de cliente"));
+        String nombreCliente = JOptionPane.showInputDialog(null, "nombre de cliente");
+        int numeroDocumento = Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el numero de documento"));
+        int numeroMesa = Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el numero de mesa"));
+        String diaReserva = JOptionPane.showInputDialog(null, "ingrese el dia de reserva");
+
+        Persona cliente = new Persona(numeroDocumento, crud.saberDiasNumero(diaReserva), LocalDateTime.now(),
+                numeroMesa - 1, nombreCliente);
+
         crud.ingresarCliente(cliente);
     }// GEN-LAST:event_ingresarClienteBTNActionPerformed
 
@@ -199,10 +243,11 @@ public class Inicio extends javax.swing.JFrame {
         // </editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Inicio().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new menuInicio(crud).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buscarCedulaBTN;
     private javax.swing.JButton clientesMesas;
     private javax.swing.JButton consultarClientesBTN;
     private javax.swing.JButton diaMaximoClientes;

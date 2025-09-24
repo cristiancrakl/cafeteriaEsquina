@@ -6,7 +6,54 @@ public class crudCliente_Logica {
 
     Nodo primero;
 
-    int[][] horarioMesa = new int[3][6];
+    int[][] horarioMesa;
+
+    public void ingresarLogicaNegocio(int mesas, int dias) {
+
+        horarioMesa = new int[mesas][dias];
+
+    }
+
+    // esto es para cambiar de dias de la semana a numeros
+    public int saberDiasNumero(String dia) {
+        int diaSemana = 0;
+
+        switch (dia) {
+            case "lunes" -> diaSemana = 0;
+            case "martes" -> diaSemana = 1;
+            case "miércoles" -> diaSemana = 2;
+            case "jueves" -> diaSemana = 3;
+            case "viernes" -> diaSemana = 4;
+            case "sabado" -> diaSemana = 5;
+            case "domingo" -> diaSemana = 6;
+            default -> {
+                JOptionPane.showMessageDialog(null, "dia no valido escriba el dia en minusculas sin tildes ");
+            }
+        }
+
+        return diaSemana;
+    }
+
+    // esto es para cambiar de numeros a dias de la semana
+    public String saberDiasLetra(int dia) {
+
+        String diaSemana = "";
+
+        switch (dia) {
+            case 0 -> diaSemana = "lunes";
+            case 1 -> diaSemana = "martes";
+            case 2 -> diaSemana = "miércoles";
+            case 3 -> diaSemana = "jueves";
+            case 4 -> diaSemana = "viernes";
+            case 5 -> diaSemana = "sábado";
+            case 6 -> diaSemana = "domingo";
+            default -> {
+            }
+        }
+
+        return diaSemana;
+
+    }
 
     public void ingresarCliente(Persona cliente) {
 
@@ -23,6 +70,7 @@ public class crudCliente_Logica {
                 + "  a las: " + primero.getPersona().getHoraIngreso());
 
         horarioMesa[cliente.getMesaPosicion()][cliente.getDiaSemana()] += 1;
+
     }
 
     public void consultar() {
@@ -33,10 +81,48 @@ public class crudCliente_Logica {
             System.out.println("si");
         } else {
             while (temporal != null) {
-                JOptionPane.showMessageDialog(null, "Nombre : " + temporal.getPersona().getNombre());
+                JOptionPane.showMessageDialog(null,
+                        "Los datos del cliente son: \n" + temporal.getPersona().mostrarAtributos());
                 temporal = temporal.getDireccion();
-                System.out.println("no");
             }
+        }
+    }
+
+    public void consultarID() {
+
+        Nodo temporal = primero;
+        if (temporal == null) {
+            JOptionPane.showMessageDialog(null, "Lista vacia");
+            System.out.println("si");
+        } else {
+
+            boolean encontrado = false;
+
+            int cedulaBuscar = Integer
+                    .parseInt(JOptionPane.showInputDialog("Ingrese el numero de cedula a buscar"));
+
+            while (temporal != null) {
+                int cedula = temporal.getPersona().getCedulaId();
+
+                if (cedula == cedulaBuscar) {
+                    JOptionPane.showMessageDialog(null, "ID encontrado");
+                    JOptionPane.showMessageDialog(null,
+                            "Los datos del cliente son: \n" + "" + temporal.getPersona().mostrarAtributos());
+
+                    encontrado = true;
+
+                    break;
+
+                }
+
+                temporal = temporal.getDireccion();
+
+            }
+            if (encontrado == false) {
+                JOptionPane.showMessageDialog(null, "ID no encontrado");
+
+            }
+
         }
     }
 
@@ -58,7 +144,7 @@ public class crudCliente_Logica {
                 totalDia += horarioMesa[i][j];
             }
             JOptionPane.showMessageDialog(null,
-                    "Total de clientes en el día " + (j + 1) + ": " + totalDia);
+                    "Total de clientes en el día " + (saberDiasLetra(j)) + ": " + totalDia);
         }
     }
 
@@ -95,7 +181,7 @@ public class crudCliente_Logica {
         }
 
         JOptionPane.showMessageDialog(null,
-                "El día con más clientes es el día " + (maximoDia + 1) +
+                "El día con más clientes es el día " + (saberDiasLetra(maximoDia)) +
                         " con un total de " + maximoClientes + " clientes.");
     }
 

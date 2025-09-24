@@ -18,6 +18,13 @@ public class Persona {
         this.nombre = nombre;
     }
 
+    public String mostrarAtributos() {
+
+        return "Nombre: " + nombre + "\nCedula: " + cedulaId + "\nMesa: " + mesaPosicion + "\nDia: " + diaSemana
+                + "\nHora de ingreso: " + horaIngreso;
+
+    }
+
     public String getNombre() {
         return nombre;
     }

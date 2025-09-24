@@ -4,9 +4,9 @@ public class Run {
 
     public static void main(String[] args) {
 
-        Inicio inicio = new Inicio();
+        logicaNegocio logica = new logicaNegocio();
 
-        inicio.setVisible(true);
+        logica.setVisible(true);
 
     }
 
