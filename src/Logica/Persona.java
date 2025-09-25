@@ -3,6 +3,7 @@ package Logica;
 import java.time.LocalDateTime;
 
 public class Persona {
+    crudCliente_Logica diasCambio = new crudCliente_Logica();
 
     private String nombre;
     private int cedulaId;
@@ -20,7 +21,8 @@ public class Persona {
 
     public String mostrarAtributos() {
 
-        return "Nombre: " + nombre + "\nCedula: " + cedulaId + "\nMesa: " + mesaPosicion + "\nDia: " + diaSemana
+        return "Nombre: " + nombre + "\nCedula: " + cedulaId + "\nMesa: " + (mesaPosicion + 1) + "\nDia reserva: "
+                + diasCambio.saberDiasLetra(diaSemana)
                 + "\nHora de ingreso: " + horaIngreso;
 
     }

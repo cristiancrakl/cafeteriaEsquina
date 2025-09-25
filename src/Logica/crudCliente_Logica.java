@@ -14,27 +14,7 @@ public class crudCliente_Logica {
 
     }
 
-    // esto es para cambiar de dias de la semana a numeros
-    public int saberDiasNumero(String dia) {
-        int diaSemana = 0;
-
-        switch (dia) {
-            case "lunes" -> diaSemana = 0;
-            case "martes" -> diaSemana = 1;
-            case "miércoles" -> diaSemana = 2;
-            case "jueves" -> diaSemana = 3;
-            case "viernes" -> diaSemana = 4;
-            case "sabado" -> diaSemana = 5;
-            case "domingo" -> diaSemana = 6;
-            default -> {
-                JOptionPane.showMessageDialog(null, "dia no valido escriba el dia en minusculas sin tildes ");
-            }
-        }
-
-        return diaSemana;
-    }
-
-    // esto es para cambiar de numeros a dias de la semana
+    // esto es para cambiar de numeros a dias en letras
     public String saberDiasLetra(int dia) {
 
         String diaSemana = "";

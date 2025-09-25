@@ -138,7 +138,7 @@ public class logicaNegocio extends javax.swing.JFrame {
 
         crud.ingresarLogicaNegocio(mesas, dias);
 
-        menuInicio menu = new menuInicio(crud);
+        menuInicio menu = new menuInicio(crud, mesas, dias);
         menu.setVisible(true);
 
         dispose();
