@@ -211,14 +211,37 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
 
         private void ingresarClienteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ingresarClienteActionPerformed
 
-                int diaSemana = -1;
+                LocalDateTime horaIngreso = LocalDateTime.now();
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
+                String horaFormateada = dtf.format(horaIngreso);
 
                 String nombreCliente = nombreClienteTextField1.getText();
-                int numeroDocumento = Integer.parseInt(documentoTextField.getText());
-                int numeroMesaIngresado = Integer.parseInt(mesaUbicacionTextField.getText());
+                String numeroDocumento = documentoTextField.getText();
                 try {
 
-                        while (numeroMesaIngresado < 1 && numeroMesaIngresado > numeroMesas) {
+                        while (nombreCliente.isEmpty()) {
+
+                                nombreCliente = JOptionPane.showInputDialog(null,
+                                                "El nombre del cliente no puede estar vacio, ingrese un nombre valido");
+
+                        }
+
+                        while (numeroDocumento.isEmpty() || Integer.parseInt(numeroDocumento) < 999) {
+
+                                numeroDocumento = JOptionPane.showInputDialog(null,
+                                                "El numero de documento no puede estar vacio o ser menores a cuatro digitos, ingrese un numero valido valido");
+
+                        }
+
+                } catch (Exception e) {
+                        System.out.println(e);
+                }
+
+                int numeroMesaIngresado = Integer.parseInt(mesaUbicacionTextField.getText());
+
+                try {
+
+                        while (numeroMesaIngresado < 1 || numeroMesaIngresado > numeroMesas) {
 
                                 numeroMesaIngresado = Integer.parseInt(JOptionPane.showInputDialog(null,
                                                 "recuerde que las mesas disponibles son de la 1 a la " + numeroMesas));
@@ -226,13 +249,15 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
                         }
 
                 } catch (Exception e) {
-                        // TODO: handle exception
+                        System.out.println(e);
                 }
 
                 String diaReserva = diaReservaTextField1.getText().toLowerCase();
+                int diaSemana = -1;
 
                 try {
 
+                        boolean error = false;
                         diaSemana = -1;
                         while (diaSemana <= -1 || diaSemana > (dias - 1)) {
 
@@ -247,26 +272,28 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
                                         default -> {
                                                 diaReserva = JOptionPane.showInputDialog(null,
                                                                 "dia no valido escriba el dia sin tildes y con letras");
+                                                error = true;
                                         }
                                 }
 
-                                if (diaSemana < 0 || diaSemana > (dias - 1)) {
-                                        diaReserva = JOptionPane.showInputDialog(null,
-                                                        "dia no valido recuerde que hoy tabajamos de lunes a "
-                                                                        + crud.saberDiasLetra(dias - 1));
+                                if (error != true) {
+                                        if (diaSemana < 0 || diaSemana > (dias - 1)) {
+                                                diaReserva = JOptionPane.showInputDialog(null,
+                                                                "dia no valido recuerde que hoy tabajamos de lunes a "
+                                                                                + crud.saberDiasLetra(dias - 1));
+                                        }
+
                                 }
 
                         }
 
                 } catch (Exception e) {
 
+                        System.out.println(e);
+
                 }
-                LocalDateTime horaIngreso = LocalDateTime.now();
 
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
-                String horaFormateada = dtf.format(horaIngreso);
-
-                Persona cliente = new Persona(numeroDocumento, diaSemana, horaFormateada,
+                Persona cliente = new Persona(Integer.parseInt(numeroDocumento), diaSemana, horaFormateada,
                                 numeroMesaIngresado - 1, nombreCliente);
 
                 crud.ingresarCliente(cliente);
