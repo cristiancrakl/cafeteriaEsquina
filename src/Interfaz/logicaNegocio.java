@@ -138,8 +138,8 @@ public class logicaNegocio extends javax.swing.JFrame {
 
         crud.ingresarLogicaNegocio(mesas, dias);
 
-        menuInicio menu = new menuInicio(crud, mesas, dias);
-        menu.setVisible(true);
+        registrarCliente_Interfaz registrar = new registrarCliente_Interfaz(crud, mesas, dias);
+        registrar.setVisible(true);
 
         dispose();
     }// GEN-LAST:event_confirmarLogicaNegocioBTNActionPerformed

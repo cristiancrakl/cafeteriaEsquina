@@ -1,7 +1,5 @@
 package Logica;
 
-import java.time.LocalDateTime;
-
 public class Persona {
     crudCliente_Logica diasCambio = new crudCliente_Logica();
 
@@ -9,9 +7,9 @@ public class Persona {
     private int cedulaId;
     private int mesaPosicion;
     private int diaSemana;
-    private LocalDateTime horaIngreso;
+    private String horaIngreso;
 
-    public Persona(int cedulaId, int diaSemana, LocalDateTime horaIngreso, int mesaPosicion, String nombre) {
+    public Persona(int cedulaId, int diaSemana, String horaIngreso, int mesaPosicion, String nombre) {
         this.cedulaId = cedulaId;
         this.diaSemana = diaSemana;
         this.horaIngreso = horaIngreso;
@@ -59,11 +57,11 @@ public class Persona {
         this.diaSemana = diaSemana;
     }
 
-    public LocalDateTime getHoraIngreso() {
+    public String getHoraIngreso() {
         return horaIngreso;
     }
 
-    public void setHoraIngreso(LocalDateTime horaIngreso) {
+    public void setHoraIngreso(String horaIngreso) {
         this.horaIngreso = horaIngreso;
     }
 

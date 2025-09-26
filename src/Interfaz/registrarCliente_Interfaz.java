@@ -6,6 +6,9 @@ package Interfaz;
 
 import Logica.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,12 +18,18 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
 
         private static final java.util.logging.Logger logger = java.util.logging.Logger
                         .getLogger(registrarCliente_Interfaz.class.getName());
+        private static crudCliente_Logica crud;
+        private static int numeroMesas;
+        private static int dias;
 
         /**
          * Creates new form inicioMenu
          */
-        public registrarCliente_Interfaz() {
+        public registrarCliente_Interfaz(crudCliente_Logica crud, int numeroMesas, int dias) {
                 initComponents();
+                this.crud = crud;
+                this.numeroMesas = numeroMesas;
+                this.dias = dias;
         }
 
         /**
@@ -202,6 +211,70 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
 
         private void ingresarClienteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ingresarClienteActionPerformed
 
+                int diaSemana = -1;
+
+                String nombreCliente = nombreClienteTextField1.getText();
+                int numeroDocumento = Integer.parseInt(documentoTextField.getText());
+                int numeroMesaIngresado = Integer.parseInt(mesaUbicacionTextField.getText());
+                try {
+
+                        while (numeroMesaIngresado < 1 && numeroMesaIngresado > numeroMesas) {
+
+                                numeroMesaIngresado = Integer.parseInt(JOptionPane.showInputDialog(null,
+                                                "recuerde que las mesas disponibles son de la 1 a la " + numeroMesas));
+
+                        }
+
+                } catch (Exception e) {
+                        // TODO: handle exception
+                }
+
+                String diaReserva = diaReservaTextField1.getText().toLowerCase();
+
+                try {
+
+                        diaSemana = -1;
+                        while (diaSemana <= -1 || diaSemana > (dias - 1)) {
+
+                                switch (diaReserva) {
+                                        case "lunes" -> diaSemana = 0;
+                                        case "martes" -> diaSemana = 1;
+                                        case "miercoles" -> diaSemana = 2;
+                                        case "jueves" -> diaSemana = 3;
+                                        case "viernes" -> diaSemana = 4;
+                                        case "sabado" -> diaSemana = 5;
+                                        case "domingo" -> diaSemana = 6;
+                                        default -> {
+                                                diaReserva = JOptionPane.showInputDialog(null,
+                                                                "dia no valido escriba el dia sin tildes y con letras");
+                                        }
+                                }
+
+                                if (diaSemana < 0 || diaSemana > (dias - 1)) {
+                                        diaReserva = JOptionPane.showInputDialog(null,
+                                                        "dia no valido recuerde que hoy tabajamos de lunes a "
+                                                                        + crud.saberDiasLetra(dias - 1));
+                                }
+
+                        }
+
+                } catch (Exception e) {
+
+                }
+                LocalDateTime horaIngreso = LocalDateTime.now();
+
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
+                String horaFormateada = dtf.format(horaIngreso);
+
+                Persona cliente = new Persona(numeroDocumento, diaSemana, horaFormateada,
+                                numeroMesaIngresado - 1, nombreCliente);
+
+                crud.ingresarCliente(cliente);
+
+                menuInicio menu = new menuInicio(crud, numeroMesas, dias);
+                menu.setVisible(true);
+                dispose();
+
         }// GEN-LAST:event_ingresarClienteActionPerformed
 
         private void documentoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_documentoTextFieldActionPerformed
@@ -243,7 +316,8 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
                 // </editor-fold>
 
                 /* Create and display the form */
-                java.awt.EventQueue.invokeLater(() -> new registrarCliente_Interfaz().setVisible(true));
+                java.awt.EventQueue.invokeLater(
+                                () -> new registrarCliente_Interfaz(crud, numeroMesas, dias).setVisible(true));
         }
 
         // Variables declaration - do not modify//GEN-BEGIN:variables

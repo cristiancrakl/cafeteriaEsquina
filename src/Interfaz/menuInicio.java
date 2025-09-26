@@ -30,6 +30,7 @@ public class menuInicio extends javax.swing.JFrame {
         this.crud = crud;
         this.numeroMesas = numeroMesas;
         this.dias = dias;
+
     }
 
     /**
@@ -203,60 +204,10 @@ public class menuInicio extends javax.swing.JFrame {
     }// GEN-LAST:event_buscarCedulaBTNActionPerformed
 
     private void ingresarClienteBTNActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ingresarClienteBTNActionPerformed
+        registrarCliente_Interfaz registrar = new registrarCliente_Interfaz(crud, numeroMesas, dias);
+        registrar.setVisible(true);
+        dispose();
 
-        int diaSemana = -1;
-
-        String nombreCliente = JOptionPane.showInputDialog(null, "nombre de cliente");
-        int numeroDocumento = Integer.parseInt(JOptionPane.showInputDialog(null, "ingrese el numero de documento"));
-        int numeroMesaIngresado = -1;
-        try {
-            do {
-                numeroMesaIngresado = Integer.parseInt(JOptionPane.showInputDialog(null,
-                        "ingrese el numero de mesa recuerde que debe estar dentro de 1 y " + numeroMesas));
-
-            } while (numeroMesaIngresado < 1 && numeroMesaIngresado > numeroMesas);
-
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-
-        String diaReserva = "";
-
-        try {
-
-            diaSemana = -1;
-            while (diaSemana <= -1 || diaSemana > (dias - 1)) {
-
-                diaReserva = JOptionPane.showInputDialog(null, "ingrese el dia de reserva");
-
-                switch (diaReserva.toLowerCase()) {
-                    case "lunes" -> diaSemana = 0;
-                    case "martes" -> diaSemana = 1;
-                    case "miercoles" -> diaSemana = 2;
-                    case "jueves" -> diaSemana = 3;
-                    case "viernes" -> diaSemana = 4;
-                    case "sabado" -> diaSemana = 5;
-                    case "domingo" -> diaSemana = 6;
-                    default -> {
-                        JOptionPane.showMessageDialog(null, "dia no valido escriba el dia sin tildes y con letras");
-                    }
-                }
-
-                if (diaSemana < 0 || diaSemana > (dias - 1)) {
-                    JOptionPane.showMessageDialog(null,
-                            "dia no valido recuerde que hoy tabajamos de lunes a " + crud.saberDiasLetra(dias - 1));
-                }
-
-            }
-
-        } catch (Exception e) {
-
-        }
-
-        Persona cliente = new Persona(numeroDocumento, diaSemana, LocalDateTime.now(),
-                numeroMesaIngresado - 1, nombreCliente);
-
-        crud.ingresarCliente(cliente);
     }// GEN-LAST:event_ingresarClienteBTNActionPerformed
 
     private void consultarClientesBTNActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_consultarClientesBTNActionPerformed
