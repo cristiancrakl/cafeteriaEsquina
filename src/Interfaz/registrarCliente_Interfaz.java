@@ -229,7 +229,7 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
 
         // tomar los datos de los campos
         String nombreCliente = nombreClienteTextField1.getText();
-        int numeroDocumento = Integer.parseInt(documentoTextField.getText().trim());
+        String numeroDocumentoIngresado = documentoTextField.getText().trim();
         int numeroMesaIngresado = mesaComboBox.getSelectedIndex() + 1;
 
         String diaReserva = diaComboBox.getSelectedItem().toString().toLowerCase();
@@ -243,12 +243,13 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
                     "El nombre del cliente no puede estar vacio, ingrese un nombre valido");
 
         }
-        while (numeroDocumento < 0 || documentoTextField.getText().isEmpty()) {
+        while (numeroDocumentoIngresado.isEmpty()) {
 
-            numeroDocumento = Integer.parseInt(JOptionPane.showInputDialog(null,
-                    "El numero de documento no puede estar vacio o ser menor a cero, ingrese un numero valido valido"));
+            numeroDocumentoIngresado = JOptionPane.showInputDialog(null,
+                    "El numero de documento no puede estar vacio o ser menor a cero, ingrese un numero valido valido");
 
         }
+        int numeroDocumento = Integer.parseInt(numeroDocumentoIngresado);
 
         // crear el objeto cliente y agregarlo a la lista
 
