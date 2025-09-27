@@ -222,12 +222,21 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
 
     private void ingresarClienteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ingresarClienteActionPerformed
 
+        // tomar la hora actual y formatearla
         LocalDateTime horaIngreso = LocalDateTime.now();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
         String horaFormateada = dtf.format(horaIngreso);
 
+        // tomar los datos de los campos
         String nombreCliente = nombreClienteTextField1.getText();
         String numeroDocumento = documentoTextField.getText();
+        int numeroMesaIngresado = mesaComboBox.getSelectedIndex() + 1;
+
+        String diaReserva = diaComboBox.getSelectedItem().toString().toLowerCase();
+        int diaSemana = 0;
+        diaSemana = crud.saberDiasNumero(diaReserva, diaSemana);
+
+        // comprobacion de campos vacios
         try {
 
             while (nombreCliente.isEmpty()) {
@@ -248,34 +257,13 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
             System.out.println(e);
         }
 
-        int numeroMesaIngresado = mesaComboBox.getSelectedIndex() + 1;
-
-        String diaReserva = diaComboBox.getSelectedItem().toString().toLowerCase();
-        int diaSemana = 0;
-
-        try {
-
-            switch (diaReserva) {
-                case "lunes" -> diaSemana = 0;
-                case "martes" -> diaSemana = 1;
-                case "miercoles" -> diaSemana = 2;
-                case "jueves" -> diaSemana = 3;
-                case "viernes" -> diaSemana = 4;
-                case "sabado" -> diaSemana = 5;
-                case "domingo" -> diaSemana = 6;
-            }
-
-        } catch (Exception e) {
-
-            System.out.println(e);
-
-        }
-
+        // crear el objeto cliente y agregarlo a la lista
         Persona cliente = new Persona(Integer.parseInt(numeroDocumento), diaSemana, horaFormateada,
                 numeroMesaIngresado - 1, nombreCliente);
 
         crud.ingresarCliente(cliente);
 
+        // volver al menu principal
         menuInicio menu = new menuInicio(crud);
         menu.setVisible(true);
         dispose();

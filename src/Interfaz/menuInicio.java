@@ -200,6 +200,9 @@ public class menuInicio extends javax.swing.JFrame {
     }// GEN-LAST:event_buscarCedulaBTNActionPerformed
 
     private void ingresarClienteBTNActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ingresarClienteBTNActionPerformed
+
+        // abrir la ventana de registrar cliente y le mandarle el objeto crud para que
+        // no sea diferente
         registrarCliente_Interfaz registrar = new registrarCliente_Interfaz(crud);
         registrar.setVisible(true);
         dispose();

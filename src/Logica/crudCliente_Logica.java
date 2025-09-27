@@ -30,6 +30,30 @@ public class crudCliente_Logica {
 
     }
 
+    // esto es para cambiar de letras a dias en numero
+    public int saberDiasNumero(String diaReserva, int diaSemana) {
+
+        try {
+
+            switch (diaReserva) {
+                case "lunes" -> diaSemana = 0;
+                case "martes" -> diaSemana = 1;
+                case "miercoles" -> diaSemana = 2;
+                case "jueves" -> diaSemana = 3;
+                case "viernes" -> diaSemana = 4;
+                case "sabado" -> diaSemana = 5;
+                case "domingo" -> diaSemana = 6;
+            }
+
+        } catch (Exception e) {
+
+            System.out.println(e);
+
+        }
+
+        return diaSemana;
+    }
+
     // metodo para ingresar clientes a la lista
     public void ingresarCliente(Persona cliente) {
 
