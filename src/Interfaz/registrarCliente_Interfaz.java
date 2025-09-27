@@ -229,36 +229,30 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
 
         // tomar los datos de los campos
         String nombreCliente = nombreClienteTextField1.getText();
-        String numeroDocumento = documentoTextField.getText();
+        int numeroDocumento = Integer.parseInt(documentoTextField.getText().trim());
         int numeroMesaIngresado = mesaComboBox.getSelectedIndex() + 1;
 
         String diaReserva = diaComboBox.getSelectedItem().toString().toLowerCase();
         int diaSemana = 0;
         diaSemana = crud.saberDiasNumero(diaReserva, diaSemana);
 
-        // comprobacion de campos vacios
-        try {
+        // que no esten vacios los campos
+        while (nombreCliente.isEmpty()) {
 
-            while (nombreCliente.isEmpty()) {
+            nombreCliente = JOptionPane.showInputDialog(null,
+                    "El nombre del cliente no puede estar vacio, ingrese un nombre valido");
 
-                nombreCliente = JOptionPane.showInputDialog(null,
-                        "El nombre del cliente no puede estar vacio, ingrese un nombre valido");
+        }
+        while (numeroDocumento < 0 || documentoTextField.getText().isEmpty()) {
 
-            }
+            numeroDocumento = Integer.parseInt(JOptionPane.showInputDialog(null,
+                    "El numero de documento no puede estar vacio o ser menor a cero, ingrese un numero valido valido"));
 
-            while (numeroDocumento.isEmpty() || Integer.parseInt(numeroDocumento) < 0) {
-
-                numeroDocumento = JOptionPane.showInputDialog(null,
-                        "El numero de documento no puede estar vacio o ser menor a cero, ingrese un numero valido valido");
-
-            }
-
-        } catch (Exception e) {
-            System.out.println(e);
         }
 
         // crear el objeto cliente y agregarlo a la lista
-        Persona cliente = new Persona(Integer.parseInt(numeroDocumento), diaSemana, horaFormateada,
+
+        Persona cliente = new Persona(numeroDocumento, diaSemana, horaFormateada,
                 numeroMesaIngresado - 1, nombreCliente);
 
         crud.ingresarCliente(cliente);
