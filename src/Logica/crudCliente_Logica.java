@@ -6,13 +6,8 @@ public class crudCliente_Logica {
 
     Nodo primero;
 
-    int[][] horarioMesa;
-
-    public void ingresarLogicaNegocio(int mesas, int dias) {
-
-        horarioMesa = new int[mesas][dias];
-
-    }
+    // matriz para llevar el control de las mesas y los dias
+    int[][] horarioMesa = new int[5][7];
 
     // esto es para cambiar de numeros a dias en letras
     public String saberDiasLetra(int dia) {
@@ -35,6 +30,7 @@ public class crudCliente_Logica {
 
     }
 
+    // metodo para ingresar clientes a la lista
     public void ingresarCliente(Persona cliente) {
 
         System.out.println("entro aqui");
@@ -53,6 +49,7 @@ public class crudCliente_Logica {
 
     }
 
+    // metodo para consultar todos los clientes
     public void consultar() {
 
         Nodo temporal = primero;
@@ -68,6 +65,7 @@ public class crudCliente_Logica {
         }
     }
 
+    // metodo para consultar clientes por ID
     public void consultarID() {
 
         Nodo temporal = primero;
@@ -106,6 +104,7 @@ public class crudCliente_Logica {
         }
     }
 
+    // metodo para mostar estadisticas
     public void totalClientesSemanales() {
         int totalClientes = 0;
         for (int i = 0; i < horarioMesa.length; i++) {
@@ -117,6 +116,7 @@ public class crudCliente_Logica {
                 "El total de clientes en la semana es: " + totalClientes);
     }
 
+    // metodo para mostar estadisticas
     public void totalClientesPorDiaSemana() {
         for (int j = 0; j < horarioMesa[0].length; j++) {
             int totalDia = 0;
@@ -128,6 +128,7 @@ public class crudCliente_Logica {
         }
     }
 
+    // metodo para mostar estadisticas
     public void totalClientesPorMesa() {
         for (int i = 0; i < horarioMesa.length; i++) {
             int totalMesa = 0;
@@ -142,6 +143,7 @@ public class crudCliente_Logica {
         }
     }
 
+    // metodo para mostar estadisticas
     public void diaConMasClientes() {
         int maximoDia = -1;
 

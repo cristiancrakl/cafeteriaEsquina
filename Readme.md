@@ -2,40 +2,39 @@
 
 ## Descripción General
 
-Este proyecto es una aplicación de escritorio desarrollada en Java utilizando Swing para la interfaz gráfica de usuario (GUI). Se trata de un sistema simple de gestión de reservaciones para un café llamado "Café la Esquina". El sistema permite configurar parámetros básicos del negocio (como el número de mesas y si se atiende los domingos), registrar clientes con sus datos de reservación, consultar la lista de clientes, buscar por cédula, y generar reportes estadísticos sobre la ocupación por días, mesas y totales semanales.
+Este proyecto es una aplicación de escritorio desarrollada en Java utilizando Swing para la interfaz gráfica de usuario (GUI). Se trata de un sistema simple de gestión de reservaciones para un café llamado "Café la Esquina". El sistema permite registrar clientes con sus datos de reservación, consultar la lista de clientes, buscar por cédula, y generar reportes estadísticos sobre la ocupación por días, mesas y totales semanales.
 
 El código está organizado en el directorio `src/`, dividido en dos paquetes principales:
 
 - **Interfaz**: Contiene las clases de la GUI.
 - **Logica**: Maneja la lógica de negocio, incluyendo la estructura de datos para clientes y el seguimiento de ocupación.
 
-La aplicación utiliza una lista enlazada para almacenar los datos de los clientes y un arreglo bidimensional para rastrear la cantidad de clientes por mesa y día de la semana.
+La aplicación utiliza una lista enlazada para almacenar los datos de los clientes y un arreglo bidimensional para rastrear la cantidad de clientes por mesa y día de la semana. El sistema está configurado para 5 mesas y 7 días de la semana (de lunes a domingo).
 
 ## Estructura del Proyecto
 
 ### Directorio `src/`
 
 - **Interfaz/**
-  - `logicaNegocio.java`: Ventana inicial para configurar los parámetros del negocio (número de mesas y si se atiende domingos). Una vez configurado, pasa a la interfaz de registro de clientes.
   - `menuInicio.java`: Menú principal con opciones para:
-    - Ingresar un nuevo cliente.
+    - Ingresar un nuevo cliente (abre la ventana de registro).
     - Consultar todos los clientes.
     - Buscar cliente por número de cédula.
     - Ver total de clientes por semana.
     - Ver total de clientes por día de la semana.
     - Ver total de clientes por mesa.
     - Identificar el día con más clientes.
-  - `registrarCliente_Interfaz.java`: Formulario para registrar un cliente, solicitando nombre, número de cédula, mesa, y día de la semana. Captura automáticamente la hora de ingreso.
+  - `registrarCliente_Interfaz.java`: Formulario para registrar un cliente, solicitando nombre, número de cédula, mesa (1-5), y día de la semana (lunes-domingo). Captura automáticamente la hora de ingreso.
 - **Logica/**
   - `crudCliente_Logica.java`: Clase principal de lógica. Maneja:
-    - Inicialización de la matriz de ocupación (mesas x días).
+    - Inicialización de la matriz de ocupación (5 mesas x 7 días).
     - Inserción de clientes en una lista enlazada.
     - Consultas (todas las clientes o por ID).
     - Cálculos estadísticos (totales por semana, día, mesa; día más ocupado).
     - Conversión de números de día a nombres en español.
   - `Persona.java`: Clase que representa a un cliente, con atributos como nombre, cédula, posición de mesa, día de la semana y hora de ingreso. Incluye método para mostrar los atributos.
   - `Nodo.java`: Clase para nodos de la lista enlazada que almacena los objetos `Persona`.
-- `Run.java`: Clase principal de ejecución. Inicia la aplicación abriendo la ventana de configuración (`logicaNegocio`).
+- `Run.java`: Clase principal de ejecución. Inicia la aplicación creando una instancia de `crudCliente_Logica` y abriendo la ventana de registro de clientes (`registrarCliente_Interfaz`).
 
 ### Archivos Adicionales
 
@@ -44,8 +43,8 @@ La aplicación utiliza una lista enlazada para almacenar los datos de los client
 
 ## Características Principales
 
-- **Configuración Inicial**: Define el número de mesas y los días de operación (6 o 7 días, incluyendo domingos opcionalmente).
-- **Registro de Clientes**: Valida entradas (mesa válida, día de la semana correcto) y registra la hora actual de ingreso.
+- **Registro de Clientes**: Formulario para ingresar nombre, cédula, mesa (1-5) y día de la semana (lunes-domingo). Valida entradas y registra la hora actual de ingreso.
+- **Menú Principal**: Interfaz con botones para acceder a todas las funciones: registrar cliente, consultar, buscar, reportes.
 - **Gestión de Datos**:
   - Lista enlazada para almacenar clientes (permite inserciones eficientes).
   - Matriz 2D para contar ocupación por mesa y día (facilita reportes).
@@ -55,7 +54,7 @@ La aplicación utiliza una lista enlazada para almacenar los datos de los client
   - Totales semanales, por día (lunes a domingo), por mesa.
   - Día con mayor afluencia de clientes.
 - **Interfaz en Español**: Todos los labels y mensajes están en español, adaptados al contexto de un café.
-- **Manejo de Errores**: Usa `JOptionPane` para mostrar mensajes de éxito, error o validación (ej. día inválido, mesa fuera de rango).
+- **Manejo de Errores**: Usa `JOptionPane` para mostrar mensajes de éxito, error o validación.
 
 ## Requisitos
 
@@ -74,10 +73,10 @@ La aplicación utiliza una lista enlazada para almacenar los datos de los client
    ```
 
 4. **Flujo de Uso**:
-   - Se abre la ventana de configuración: Ingresa el número de mesas y selecciona si atienden domingos.
-   - Confirma para pasar al registro de cliente.
-   - Registra clientes uno por uno (o regresa al menú principal).
-   - Desde el menú, usa las opciones para consultar o generar reportes.
+   - Se abre la ventana de registro de cliente.
+   - Ingresa los datos del cliente y registra.
+   - Después de registrar, se abre el menú principal.
+   - Desde el menú, puedes registrar más clientes, consultar todos, buscar por cédula, o ver reportes estadísticos.
    - La aplicación cierra al salir de cualquier ventana principal.
 
 ## Limitaciones y Mejoras Posibles

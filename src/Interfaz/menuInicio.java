@@ -19,17 +19,13 @@ public class menuInicio extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger
             .getLogger(menuInicio.class.getName());
     private static crudCliente_Logica crud;
-    private static int numeroMesas;
-    private static int dias;
 
     /**
      * Creates new form Inicio
      */
-    public menuInicio(crudCliente_Logica crud, int numeroMesas, int dias) {
+    public menuInicio(crudCliente_Logica crud) {
         initComponents();
         this.crud = crud;
-        this.numeroMesas = numeroMesas;
-        this.dias = dias;
 
     }
 
@@ -204,7 +200,7 @@ public class menuInicio extends javax.swing.JFrame {
     }// GEN-LAST:event_buscarCedulaBTNActionPerformed
 
     private void ingresarClienteBTNActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ingresarClienteBTNActionPerformed
-        registrarCliente_Interfaz registrar = new registrarCliente_Interfaz(crud, numeroMesas, dias);
+        registrarCliente_Interfaz registrar = new registrarCliente_Interfaz(crud);
         registrar.setVisible(true);
         dispose();
 
@@ -242,7 +238,7 @@ public class menuInicio extends javax.swing.JFrame {
         // </editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new menuInicio(crud, numeroMesas, dias).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new menuInicio(crud).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
