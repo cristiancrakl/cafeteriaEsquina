@@ -9,13 +9,14 @@ El código está organizado en el directorio `src/`, dividido en dos paquetes pr
 - **Interfaz**: Contiene las clases de la GUI.
 - **Logica**: Maneja la lógica de negocio, incluyendo la estructura de datos para clientes y el seguimiento de ocupación.
 
-La aplicación utiliza una lista enlazada para almacenar los datos de los clientes y un arreglo bidimensional para rastrear la cantidad de clientes por mesa y día de la semana. El sistema está configurado para 5 mesas y 7 días de la semana (de lunes a domingo).
+La aplicación utiliza una lista enlazada para almacenar los datos de los clientes y un arreglo bidimensional para rastrear la cantidad de clientes por mesa y día de la semana. El sistema permite configurar dinámicamente el número de mesas al inicio y está configurado para 6 días de la semana (de lunes a sábado).
 
 ## Estructura del Proyecto
 
 ### Directorio `src/`
 
 - **Interfaz/**
+  - `logicaNegocio.java`: Ventana inicial que solicita al usuario ingresar el número de mesas disponibles en el café.
   - `menuInicio.java`: Menú principal con opciones para:
     - Ingresar un nuevo cliente (abre la ventana de registro).
     - Consultar todos los clientes.
@@ -24,17 +25,17 @@ La aplicación utiliza una lista enlazada para almacenar los datos de los client
     - Ver total de clientes por día de la semana.
     - Ver total de clientes por mesa.
     - Identificar el día con más clientes.
-  - `registrarCliente_Interfaz.java`: Formulario para registrar un cliente, solicitando nombre, número de cédula, mesa (1-5), y día de la semana (lunes-domingo). Captura automáticamente la hora de ingreso.
+  - `registrarCliente_Interfaz.java`: Formulario para registrar un cliente, solicitando nombre, número de cédula, mesa (dinámicamente basado en el número de mesas ingresado), y día de la semana (lunes-sábado). Captura automáticamente la hora de ingreso.
 - **Logica/**
   - `crudCliente_Logica.java`: Clase principal de lógica. Maneja:
-    - Inicialización de la matriz de ocupación (5 mesas x 7 días).
+    - Inicialización de la matriz de ocupación (número de mesas dinámico x 6 días).
     - Inserción de clientes en una lista enlazada.
     - Consultas (todas las clientes o por ID).
     - Cálculos estadísticos (totales por semana, día, mesa; día más ocupado).
     - Conversión de números de día a nombres en español.
   - `Persona.java`: Clase que representa a un cliente, con atributos como nombre, cédula, posición de mesa, día de la semana y hora de ingreso. Incluye método para mostrar los atributos.
   - `Nodo.java`: Clase para nodos de la lista enlazada que almacena los objetos `Persona`.
-- `Run.java`: Clase principal de ejecución. Inicia la aplicación creando una instancia de `crudCliente_Logica` y abriendo la ventana de registro de clientes (`registrarCliente_Interfaz`).
+- `Run.java`: Clase principal de ejecución. Inicia la aplicación creando una instancia de `crudCliente_Logica` y abriendo la ventana inicial (`logicaNegocio`).
 
 ### Archivos Adicionales
 
@@ -43,7 +44,7 @@ La aplicación utiliza una lista enlazada para almacenar los datos de los client
 
 ## Características Principales
 
-- **Registro de Clientes**: Formulario para ingresar nombre, cédula, mesa (1-5) y día de la semana (lunes-domingo). Valida entradas y registra la hora actual de ingreso.
+- **Registro de Clientes**: Formulario para ingresar nombre, cédula, mesa (dinámicamente basado en el número de mesas configurado) y día de la semana (lunes-sábado). Valida entradas y registra la hora actual de ingreso.
 - **Menú Principal**: Interfaz con botones para acceder a todas las funciones: registrar cliente, consultar, buscar, reportes.
 - **Gestión de Datos**:
   - Lista enlazada para almacenar clientes (permite inserciones eficientes).
@@ -51,7 +52,7 @@ La aplicación utiliza una lista enlazada para almacenar los datos de los client
 - **Reportes**:
   - Consulta completa de clientes con sus detalles.
   - Búsqueda por cédula.
-  - Totales semanales, por día (lunes a domingo), por mesa.
+  - Totales semanales, por día (lunes a sábado), por mesa.
   - Día con mayor afluencia de clientes.
 - **Interfaz en Español**: Todos los labels y mensajes están en español, adaptados al contexto de un café.
 - **Manejo de Errores**: Usa `JOptionPane` para mostrar mensajes de éxito, error o validación.
@@ -73,7 +74,8 @@ La aplicación utiliza una lista enlazada para almacenar los datos de los client
    ```
 
 4. **Flujo de Uso**:
-   - Se abre la ventana de registro de cliente.
+   - Se abre la ventana inicial para ingresar el número de mesas disponibles.
+   - Después de ingresar y validar el número de mesas, se abre la ventana de registro de cliente.
    - Ingresa los datos del cliente y registra.
    - Después de registrar, se abre el menú principal.
    - Desde el menú, puedes registrar más clientes, consultar todos, buscar por cédula, o ver reportes estadísticos.
@@ -84,7 +86,8 @@ La aplicación utiliza una lista enlazada para almacenar los datos de los client
 - **Persistencia**: Los datos se pierden al cerrar la aplicación (en memoria). Podría agregarse guardado en archivo o base de datos.
 - **Validaciones**: Mejora el manejo de excepciones (ej. entradas no numéricas).
 - **UI/UX**: Interfaz básica podría mejorarse con diseños más modernos o validaciones en tiempo real.
-- **Escalabilidad**: La lista enlazada es simple etsa bien para este sistema pero para grandes volúmenes, habria que considerar estructuras más eficientes.
+- **Escalabilidad**: La lista enlazada es simple está bien para este sistema pero para grandes volúmenes, habría que considerar estructuras más eficientes.
+- **Configuración**: El número de mesas es dinámico, pero los días de la semana están limitados a lunes-sábado (6 días).
 
 ## Autor
 
