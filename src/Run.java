@@ -10,7 +10,7 @@ public class Run {
 
         // abrir la ventana de registrar cliente y le mandarle el objeto crud para que
         // sea el mismo
-        registrarCliente_Interfaz ventana = new registrarCliente_Interfaz(crud);
+        logicaNegocio ventana = new logicaNegocio(crud);
         ventana.setVisible(true);
 
     }

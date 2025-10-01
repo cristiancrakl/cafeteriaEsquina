@@ -5,9 +5,13 @@ import javax.swing.JOptionPane;
 public class crudCliente_Logica {
 
     Nodo primero;
+    int[][] horarioMesa;
 
     // matriz para llevar el control de las mesas y los dias
-    int[][] horarioMesa = new int[5][7];
+    public void llenarMatriz(int numeroMesas) {
+        horarioMesa = new int[numeroMesas][6];
+
+    }
 
     // esto es para cambiar de numeros a dias en letras
     public String saberDiasLetra(int dia) {
@@ -21,7 +25,6 @@ public class crudCliente_Logica {
             case 3 -> diaSemana = "jueves";
             case 4 -> diaSemana = "viernes";
             case 5 -> diaSemana = "sábado";
-            case 6 -> diaSemana = "domingo";
             default -> {
             }
         }
@@ -42,7 +45,6 @@ public class crudCliente_Logica {
                 case "jueves" -> diaSemana = 3;
                 case "viernes" -> diaSemana = 4;
                 case "sabado" -> diaSemana = 5;
-                case "domingo" -> diaSemana = 6;
             }
 
         } catch (Exception e) {

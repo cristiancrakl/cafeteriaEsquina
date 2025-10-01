@@ -19,13 +19,15 @@ public class menuInicio extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger
             .getLogger(menuInicio.class.getName());
     private static crudCliente_Logica crud;
+    private static int numeroMesa;
 
     /**
      * Creates new form Inicio
      */
-    public menuInicio(crudCliente_Logica crud) {
+    public menuInicio(crudCliente_Logica crud, int numeroMesa) {
         initComponents();
         this.crud = crud;
+        this.numeroMesa = numeroMesa;
 
     }
 
@@ -203,7 +205,7 @@ public class menuInicio extends javax.swing.JFrame {
 
         // abrir la ventana de registrar cliente y le mandarle el objeto crud para que
         // no sea diferente
-        registrarCliente_Interfaz registrar = new registrarCliente_Interfaz(crud);
+        registrarCliente_Interfaz registrar = new registrarCliente_Interfaz(crud, numeroMesa);
         registrar.setVisible(true);
         dispose();
 
@@ -241,7 +243,7 @@ public class menuInicio extends javax.swing.JFrame {
         // </editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new menuInicio(crud).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new menuInicio(crud, numeroMesa).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
