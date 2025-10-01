@@ -28,6 +28,13 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
                 this.crud = crud;
                 this.numeroMesa = numeroMesa;
 
+                // hacer el combo box dinamico basado en el numero que le sape d emesas
+                String[] mesas = new String[numeroMesa];
+                for (int i = 0; i < numeroMesa; i++) {
+                        mesas[i] = "Mesa " + (i + 1);
+                }
+                mesaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(mesas));
+
         }
 
         /**
@@ -112,13 +119,6 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
                                 nombreClienteTextField1ActionPerformed(evt);
                         }
                 });
-
-                // hacer el combo box dinamico basado en el numero que le sape d emesas
-                String[] mesas = new String[numeroMesa];
-                for (int i = 0; i < numeroMesa; i++) {
-                        mesas[i] = "Mesa " + (i + 1);
-                }
-                mesaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(mesas));
 
                 mesaComboBox.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,7 +263,6 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
 
                 // tomar los datos de los campos
                 String nombreCliente = nombreClienteTextField1.getText();
-                String numeroDocumentoIngresado = documentoTextField.getText().trim();
                 int numeroMesaIngresado = mesaComboBox.getSelectedIndex() + 1;
 
                 String diaReserva = diaComboBox.getSelectedItem().toString().toLowerCase();
@@ -275,19 +274,53 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
 
                         nombreCliente = JOptionPane.showInputDialog(null,
                                         "El nombre del cliente no puede estar vacio, ingrese un nombre valido");
+                        if (nombreCliente == null) {
+                                JOptionPane.showMessageDialog(null, "Registro cancelado.");
+                                return;
+                        }
 
                 }
-                while (numeroDocumentoIngresado.isEmpty()) {
 
-                        numeroDocumentoIngresado = JOptionPane.showInputDialog(null,
-                                        "El numero de documento no puede estar vacio o ser menor a cero, ingrese un numero valido valido");
+                boolean valid = false;
+                String numeroDocumentoIngresado = documentoTextField.getText().trim();
 
+                // pa validar si no esta vacio o es letras
+                while (!valid) {
+                        if (numeroDocumentoIngresado.isEmpty()) {
+                                numeroDocumentoIngresado = JOptionPane.showInputDialog(null,
+                                                "El numero de documento no puede estar vacio, ingrese un numero valido");
+                                if (numeroDocumentoIngresado == null) {
+                                        JOptionPane.showMessageDialog(null, "Registro cancelado.");
+                                        return;
+                                }
+                        } else {
+                                try {
+                                        int num = Integer.parseInt(numeroDocumentoIngresado);
+                                        if (num <= 0) {
+                                                numeroDocumentoIngresado = JOptionPane.showInputDialog(null,
+                                                                "El numero de documento debe ser mayor a cero, ingrese un numero valido");
+                                                if (numeroDocumentoIngresado == null) {
+                                                        JOptionPane.showMessageDialog(null, "Registro cancelado.");
+                                                        return;
+                                                }
+                                        } else {
+                                                valid = true;
+                                        }
+                                } catch (NumberFormatException e) {
+                                        numeroDocumentoIngresado = JOptionPane.showInputDialog(null,
+                                                        "El numero de documento debe ser un numero, no letras, ingrese un numero valido");
+                                        if (numeroDocumentoIngresado == null) {
+                                                JOptionPane.showMessageDialog(null, "Registro cancelado.");
+                                                return;
+                                        }
+                                }
+                        }
                 }
-                int numeroDocumento = Integer.parseInt(numeroDocumentoIngresado);
 
-                // crear el objeto cliente y agregarlo a la lista
+                // este es el que se va a guardar
+                int numDocumento = Integer.parseInt(numeroDocumentoIngresado);
 
-                Persona cliente = new Persona(numeroDocumento, diaSemana, horaFormateada,
+                Persona cliente = new Persona(numDocumento, diaSemana, horaFormateada,
                                 numeroMesaIngresado - 1, nombreCliente);
 
                 crud.ingresarCliente(cliente);

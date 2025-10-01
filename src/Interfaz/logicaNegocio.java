@@ -105,31 +105,43 @@ public class logicaNegocio extends javax.swing.JFrame {
     private void ingresarBTNActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ingresarBTNActionPerformed
 
         boolean valid = false;
-        String numeroMesa = "";
+        String numeroMesas = numeroMesasTextField1.getText().trim();
 
         // pa validar si no esta vacio o es letras
         while (!valid) {
-            numeroMesa = numeroMesasTextField1.getText().trim();
-
-            if (numeroMesa.isEmpty()) {
-                numeroMesa = JOptionPane.showInputDialog(null,
-                        "El numero de mesa no puede estar vacio, ingrese un numero valido");
+            if (numeroMesas.isEmpty()) {
+                numeroMesas = JOptionPane.showInputDialog(null,
+                        "El numero de mesas no puede estar vacio, ingrese un numero valido");
+                if (numeroMesas == null) {
+                    JOptionPane.showMessageDialog(null, "Registro cancelado.");
+                    return;
+                }
             } else {
                 try {
-                    int num = Integer.parseInt(numeroMesa);
+                    int num = Integer.parseInt(numeroMesas);
                     if (num <= 0) {
-                        numeroMesa = JOptionPane.showInputDialog(null,
-                                "El numero de mesa debe ser mayor a cero, ingrese un numero valido");
+                        numeroMesas = JOptionPane.showInputDialog(null,
+                                "El numero de mesas debe ser mayor a cero, ingrese un numero valido");
+                        if (numeroMesas == null) {
+                            JOptionPane.showMessageDialog(null, "Registro cancelado.");
+                            return;
+                        }
                     } else {
                         valid = true;
                     }
                 } catch (NumberFormatException e) {
-                    numeroMesa = JOptionPane.showInputDialog(null,
-                            "El numero de mesa debe ser un numero, no letras, ingrese un numero valido");
+                    numeroMesas = JOptionPane.showInputDialog(null,
+                            "El numero de mesas debe ser un numero, no letras, ingrese un numero valido");
+                    if (numeroMesas == null) {
+                        JOptionPane.showMessageDialog(null, "Registro cancelado.");
+                        return;
+                    }
                 }
             }
         }
-        int numMesa = Integer.parseInt(numeroMesa);
+
+        // este es el que se va a guardar
+        int numMesa = Integer.parseInt(numeroMesas);
 
         crud.llenarMatriz(numMesa);
         registrarCliente_Interfaz ventana = new registrarCliente_Interfaz(crud, numMesa);
