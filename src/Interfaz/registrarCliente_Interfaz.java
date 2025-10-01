@@ -264,7 +264,6 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
                 // tomar los datos de los campos
                 String nombreCliente = nombreClienteTextField1.getText();
                 int numeroMesaIngresado = mesaComboBox.getSelectedIndex() + 1;
-
                 String diaReserva = diaComboBox.getSelectedItem().toString().toLowerCase();
                 int diaSemana = 0;
                 diaSemana = crud.saberDiasNumero(diaReserva, diaSemana);
@@ -281,10 +280,12 @@ public class registrarCliente_Interfaz extends javax.swing.JFrame {
 
                 }
 
+                // pa validar si no esta vacio o es letras, no me alcanzo el tiempo para hacer
+                // la funcion aparte
+
                 boolean valid = false;
                 String numeroDocumentoIngresado = documentoTextField.getText().trim();
 
-                // pa validar si no esta vacio o es letras
                 while (!valid) {
                         if (numeroDocumentoIngresado.isEmpty()) {
                                 numeroDocumentoIngresado = JOptionPane.showInputDialog(null,

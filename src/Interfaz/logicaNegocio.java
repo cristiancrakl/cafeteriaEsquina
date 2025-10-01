@@ -104,6 +104,7 @@ public class logicaNegocio extends javax.swing.JFrame {
 
     private void ingresarBTNActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ingresarBTNActionPerformed
 
+        // no me alcanzo el tiempo para hacer la funcion
         boolean valid = false;
         String numeroMesas = numeroMesasTextField1.getText().trim();
 

@@ -1,9 +1,6 @@
 package Interfaz;
 
-import java.time.LocalDateTime;
-
 import Logica.*;
-import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
